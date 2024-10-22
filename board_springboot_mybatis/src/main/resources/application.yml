@@ -1,0 +1,18 @@
+# .yml 파일 - 데이터베이스 연결, 서버 포트, 로깅 레벨 등 다양한 설정 관리
+
+# 서버 포트 설정
+server:
+  port: 8080
+
+# 데이터베이스 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC 드라이버 클래스 이름
+    url: jdbc:mysql://localhost:3306/db_codingrecipe?serverTimezone=Asia/Seoul&characterEncoding=UTF-8  # 데이터베이스 연결 URL
+    username: user_codingrecipe  # 데이터베이스 접속 사용자 이름
+    password: 1234  # 데이터베이스 접속 비밀번호
+
+# MyBatis 설정
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  # MyBatis 매퍼 XML 파일 위치
+  config-location: classpath:mybatis-config.xml  # MyBatis 설정 파일 위치
