@@ -1,0 +1,60 @@
+// 프로젝트에서 사용할 플러그인 설정
+plugins {
+    id 'java'  // 자바 플러그인 적용
+    id 'org.springframework.boot' version '3.3.4'  // 스프링 부트 플러그인 적용
+    id 'io.spring.dependency-management' version '1.1.6'  // 스프링 의존성 관리 플러그인
+}
+
+// 프로젝트 그룹 ID와 버전 설정
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+// 자바 버전 설정
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)  // Java 17 버전 사용
+    }
+}
+
+// 의존성 설정 구성
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor  // Lombok 등의 애노테이션 프로세서 설정
+    }
+}
+
+// 의존성을 가져올 저장소 설정
+repositories {
+    mavenCentral()  // Maven 중앙 저장소 사용
+}
+
+// 프로젝트 의존성 설정
+dependencies {
+    // 스프링 부트 핵심 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // JPA 데이터 접근 기술
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'  // Mustache 템플릿 엔진
+    implementation 'org.springframework.boot:spring-boot-starter-security'  // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'  // Thymeleaf 템플릿 엔진
+    implementation 'org.springframework.boot:spring-boot-starter-web'  // 웹 애플리케이션 개발
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'  // Thymeleaf 시큐리티 확장
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'	//Swagger
+    // 개발 도구 및 유틸리티
+    compileOnly 'org.projectlombok:lombok'  // Lombok - 자바 코드 생성 도구
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'  // 개발 편의를 위한 도구
+
+    // 런타임 의존성
+    runtimeOnly 'com.mysql:mysql-connector-j'  // MySQL 데이터베이스 드라이버
+
+    // 애노테이션 프로세서
+    annotationProcessor 'org.projectlombok:lombok'  // Lombok 애노테이션 처리
+
+    // 테스트 관련 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'  // 스프링 부트 테스트
+    testImplementation 'org.springframework.security:spring-security-test'  // 시큐리티 테스트
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'  // JUnit 테스트 실행 도구
+}
+
+// 테스트 태스크 설정
+tasks.named('test') {
+    useJUnitPlatform()  // JUnit 플랫폼을 사용하여 테스트 실행
+}
